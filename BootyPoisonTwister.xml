@@ -1,0 +1,226 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+    <Frame name="BootyPoisonTwister" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+        <Size x="300" y="100"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background">
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer level="BACKGROUND">
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentTitle" inherits="GameFontNormal">
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP"/>
+                    </Anchors>
+                    <Text>BootyPoisonTwister</Text>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentClose" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
+                </Anchors>
+            </Button>
+            <Slider name="$parentScaleSlider" inherits="OptionsSliderTemplate" orientation="HORIZONTAL" defaultValue="1"
+                    minValue="0.1" maxValue="2" valueStep="0.1">
+                <Size x="200" y="16"/>
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+                <Scripts>
+                    <OnValueChanged>
+                        BootyPoisonTwister_SetScale(arg1)
+                    </OnValueChanged>
+                </Scripts>
+            </Slider>
+        </Frames>
+        <Scripts>
+            <OnMouseDown>
+                BootyPoisonTwister_OnMouseDown(arg1)
+            </OnMouseDown>
+            <OnMouseUp>
+                BootyPoisonTwister_OnMouseUp(arg1)
+            </OnMouseUp>
+            <OnEvent>
+                BootyPoisonTwister_OnEvent(event)
+            </OnEvent>
+            <OnLoad>
+                BootyPoisonTwister_OnLoad()
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+    <Frame name="BootyPoisonTimer" parent="UIParent" enableMouse="true" movable="true">
+        <Size x="300" y="100"/>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="300" y="0" />
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background">
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString name="$parentTitle" inherits="GameFontNormal">
+                    <Anchors>
+                        <Anchor point="TOP" relativePoint="TOP" x="0" y="110"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentClose" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" x="-5" y="-5"/>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnMouseDown>
+                BootyPoisonTwister_OnMouseDown(arg1)
+            </OnMouseDown>
+            <OnMouseUp>
+                BootyPoisonTwister_OnMouseUp(arg1)
+            </OnMouseUp>
+            <OnEvent>
+                BootyPoisonTwister_OnEvent(event)
+            </OnEvent>
+            <OnUpdate>
+                BootyPoisonTwister_OnUpdate(arg1, arg2)
+            </OnUpdate>
+        </Scripts>
+    </Frame>
+
+    <Button name="TimersBarTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="300" y="12"/>
+        </Size>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString name="$parentText1" align="left" justifyH="LEFT" inherits="GameFontHighlight" text="">
+                    <FontHeight>
+                        <AbsValue val="10"/>
+                    </FontHeight>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <Size>
+                        <AbsDimension x="210" y="10"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT"/>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentText2" inherits="GameFontHighlight" text="">
+                    <FontHeight>
+                        <AbsValue val="10"/>
+                    </FontHeight>
+                    <Color r="1.0" g="1.0" b="1.0"/>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <StatusBar name="$parentStatusBar">
+                <Size>
+                    <AbsDimension x="90" y="10"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <BarTexture file="Interface\Tooltips\UI-Tooltip-Background.blp"/>
+                <BarColor r="1.0" g="0.7" b="0.0"/>
+                <Scripts>
+                    <OnLoad>
+                        this:SetFrameLevel(this:GetFrameLevel() - 1);
+                    </OnLoad>
+                </Scripts>
+            </StatusBar>
+        </Frames>
+    </Button>
+
+    <Button name="TimersIconTemplate" virtual="true">
+        <Size x="40" y="40"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentIcon">
+                    <Size x="40" y="40"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parentRank" inherits="GameFontNormalSmall" justifyH="CENTER" justifyV="MIDDLE">
+                    <Anchors>
+                        <Anchor point="TOP"/>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentText" inherits="GameFontNormalHuge" justifyH="CENTER" justifyV="MIDDLE">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentStacks" inherits="GameFontNormal" justifyH="RIGHT" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Button>
+
+    <Button name="ShakeYoBooty" virtual="true" hidden="true" enableMouse="true" movable="true" FRAMESTRATA="HIGH">
+        <Size x="80" y="80"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentIcon">
+                    <Size x="80" y="80"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parentText" inherits="GameFontNormalHuge" justifyH="CENTER" justifyV="MIDDLE">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnMouseDown>
+                BootyPoisonTwister_OnMouseDown(arg1)
+            </OnMouseDown>
+            <OnMouseUp>
+                BootyPoisonTwister_OnMouseUp(arg1)
+            </OnMouseUp>
+        </Scripts>
+    </Button>
+</Ui>

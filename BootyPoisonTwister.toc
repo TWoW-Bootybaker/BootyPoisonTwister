@@ -1,0 +1,8 @@
+## Interface: 11200
+## Title: BootyPoisonTwister |cFFFF8080-Bootybaker-|r
+## Notes: Poison Twister.
+## Author: Bootybaker
+## Version: 1.0
+## SavedVariablesPerCharacter: profileSettings
+BootyPoisonTwister.lua
+BootyPoisonTwister.xml
